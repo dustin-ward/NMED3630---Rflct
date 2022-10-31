@@ -33,6 +33,7 @@ var app = new Framework7({
     },
   },
 });
+
 // Login Screen Demo
 $('#my-login-screen .login-button').on('click', function () {
   var username = $('#my-login-screen [name="username"]').val();
@@ -43,4 +44,23 @@ $('#my-login-screen .login-button').on('click', function () {
 
   // Alert username and password
   app.dialog.alert('Username: ' + username + '<br/>Password: ' + password);
+});
+
+
+// Text Editor Create/Destroy
+$('#reflection-edit').on('click', () => {
+  console.log("Creating text editor")
+  $('#reflection-text').addClass('invisible')
+  $('#text-editor').removeClass('invisible');
+});
+
+$('#reflection-save').on('click', () => {
+  console.log("Closing text editor")
+
+  let textEditor = app.textEditor.get('#text-editor')
+  console.log(textEditor.value)
+  $('#reflection-text-inner').html(textEditor.value)
+
+  $('#reflection-text').removeClass('invisible')
+  $('#text-editor').addClass('invisible')
 });

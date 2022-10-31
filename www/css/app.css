@@ -12,3 +12,7 @@
 }
 
 /* Your app custom styles here */
+
+.invisible {
+  display: none;
+}
