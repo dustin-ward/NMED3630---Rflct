@@ -74,25 +74,25 @@ let editorIds = [
 ]
 
 // Text Editor Create/Destroy
-function toggleEditor() {
-  editorIds.forEach(id => {
-    if(id.val) {
-      $(id.class).addClass('invisible')
-    } else {
-      $(id.class).removeClass('invisible')
-    }
-    id.val = !id.val
-  });
-}
+// function toggleEditor() {
+//   editorIds.forEach(id => {
+//     if(id.val) {
+//       $(id.class).addClass('invisible')
+//     } else {
+//       $(id.class).removeClass('invisible')
+//     }
+//     id.val = !id.val
+//   });
+// }
 
-$('#reflection-edit').on('click', () => {
-  toggleEditor()
-  $('#reflection-title-edit input').val($('#reflection-title-text').text());
-});
+// $('#reflection-edit').on('click', () => {
+//   toggleEditor()
+//   $('#reflection-title-edit input').val($('#reflection-title-text').text());
+// });
 
-$('#reflection-save').on('click', () => {
-  let textEditor = app.textEditor.get('#text-editor')
-  $('#reflection-text-inner').html((textEditor.value ? textEditor.value : "No reflection yet..."))
-  $('#reflection-title-text').text($('#reflection-title-edit input').val());
-  toggleEditor()
-});
+// $('#reflection-save').on('click', () => {
+//   let textEditor = app.textEditor.get('#text-editor')
+//   $('#reflection-text-inner').html((textEditor.value ? textEditor.value : "No reflection yet..."))
+//   $('#reflection-title-text').text($('#reflection-title-edit input').val());
+//   toggleEditor()
+// });
