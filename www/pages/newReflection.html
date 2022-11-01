@@ -1,38 +1,83 @@
 <template>
-    <div class="page" data-name="reflectionList">
+    <div class="page" data-name="newReflection">
         <div class="navbar">
             <div class="navbar-bg"></div>
             <div class="navbar-inner sliding">
-                <div class="title">Reflections</div>
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">New Reflection</div>
+                <div class="right">
+                    <button @click=${save} class="col button button-fill">
+                        <i class="icon f7-icons if-not-md">save</i>
+                        <i class="icon material-icons if-md">save</i>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="page-content">
-            ${reflections.value.map((reflection) => $h`
-            <div class="card">
-                <div class="card-header">${reflection.title}</div>
-                <div class="card-content">${reflection.text}</div>
-                <div class="card-footer"></div>
-            </div>
-            `)}
-            <div class="block">
-                <button class="button button-fill" @click=${addReflection}>Add Reflection</Button>
+            <div id="reflection-content" class="card">
+                <div class="card-header">
+                    <input id="title-textbox" type="text" placeholder="Enter title..."></input>
+                    
+                </div>
+                <div class="card-content">
+                    <div id="text-editor" class="text-editor text-editor-resizable text-editor-init"
+                        data-placeholder="Enter text..."
+                        data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'>
+                        <div class="text-editor-content" contenteditable></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-input-wrap">
+                            <input type="text" placeholder="Select date and time" readonly="readonly"
+                              id="demo-calendar-date-time" />
+                          </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
-<script>
-    export default (props, { $store }) => {
-        const reflections = $store.getters.reflections;
 
-        const addReflection = () => {
-            $store.dispatch('addReflection', {
-                id: '4',
-                title: 'Apple iPhone 12',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+<script>
+    export default (props, { $store, $on}) => {
+        let calendarDateTime;
+
+        $on('pageInit', () => {
+            // Date + Time
+            calendarDateTime = app.calendar.create({
+                value: [new Date()],
+                inputEl: '#demo-calendar-date-time',
+                timePicker: true,
+                dateFormat: { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' },
             });
+        })
+
+        const save = () => {
+            let te = app.textEditor.get('#text-editor')
+            ref = {
+                title: $('#title-textbox').val(),
+                text: te.value,
+                date: calendarDateTime.value,
+            }
+            if(!ref.title || !ref.text) {
+                console.log("invalid reflection")
+                return
+            }
+            console.log(ref)
+            $store.dispatch('addReflection', ref);
+            app.views.reflectionList.router.navigate('/reflectionList/')
         }
 
         return $render;
     }
 
+    
 </script>

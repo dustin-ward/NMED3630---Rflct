@@ -4,19 +4,29 @@
             <div class="navbar-bg"></div>
             <div class="navbar-inner sliding">
                 <div class="title">Reflections</div>
+                <div class="right">
+                    <button class="button button-fill"><a href="/newReflection/">
+                        <i class="icon f7-icons if-not-md">edit</i>
+                        <i class="icon material-icons if-md">edit</i>
+                    </a></Button>
+                </div>
             </div>
         </div>
         <div class="page-content">
             ${reflections.value.map((reflection) => $h`
             <div class="card">
                 <div class="card-header">${reflection.title}</div>
-                <div class="card-content">${reflection.text}</div>
-                <div class="card-footer"></div>
+                <div class="card-content"><div innerHTML=${reflection.text}></div></div>
+                <div class="card-footer">${renderDate(reflection.date)}</div>
             </div>
             `)}
-            <div class="block">
-                <button class="button button-fill" @click=${addReflection}>Add Reflection</Button>
-            </div>
+            <!-- <div class="block">
+                <button class="button button-fill"><a href="/newReflection/" class="item-content item-link">
+                    <div class="item-inner">
+                        <div class="item-title">New Reflection</div>
+                    </div>
+                </a></Button>
+            </div> -->
         </div>
     </div>
 </template>
@@ -24,12 +34,16 @@
     export default (props, { $store }) => {
         const reflections = $store.getters.reflections;
 
-        const addReflection = () => {
-            $store.dispatch('addReflection', {
-                id: '4',
-                title: 'Apple iPhone 12',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
-            });
+        const renderDate = (date) => {
+            var d = new Date(Date.parse(date))
+            var hours = d.getHours();
+            var minutes = d.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return d.toDateString() + " " + strTime;
         }
 
         return $render;

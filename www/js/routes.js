@@ -21,6 +21,10 @@ var routes = [
     componentUrl: './pages/reflectionList.html'
   },
   {
+    path: '/newReflection/',
+    componentUrl: './pages/newReflection.html'
+  },
+  {
     path: '/settings/',
     url: './pages/settings.html',
   },
