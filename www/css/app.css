@@ -16,3 +16,13 @@
 .invisible {
   display: none;
 }
+
+#reflection-edit {
+  float: right;
+  margin: 0px;
+}
+
+#reflection-save {
+  float: right;
+  margin: 0px;
+}

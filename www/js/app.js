@@ -46,21 +46,53 @@ $('#my-login-screen .login-button').on('click', function () {
   app.dialog.alert('Username: ' + username + '<br/>Password: ' + password);
 });
 
+let editorIds = [
+  {
+    class: '#reflection-text',
+    val: true
+  },
+  {
+    class: '#reflection-edit',
+    val: true
+  },
+  {
+    class: '#reflection-save',
+    val: false
+  },
+  {
+    class: '#text-editor',
+    val: false
+  },
+  {
+    class: '#reflection-title-text',
+    val: true
+  },
+  {
+    class: '#reflection-title-edit',
+    val: false
+  },
+]
 
 // Text Editor Create/Destroy
+function toggleEditor() {
+  editorIds.forEach(id => {
+    if(id.val) {
+      $(id.class).addClass('invisible')
+    } else {
+      $(id.class).removeClass('invisible')
+    }
+    id.val = !id.val
+  });
+}
+
 $('#reflection-edit').on('click', () => {
-  console.log("Creating text editor")
-  $('#reflection-text').addClass('invisible')
-  $('#text-editor').removeClass('invisible');
+  toggleEditor()
+  $('#reflection-title-edit input').val($('#reflection-title-text').text());
 });
 
 $('#reflection-save').on('click', () => {
-  console.log("Closing text editor")
-
   let textEditor = app.textEditor.get('#text-editor')
-  console.log(textEditor.value)
-  $('#reflection-text-inner').html(textEditor.value)
-
-  $('#reflection-text').removeClass('invisible')
-  $('#text-editor').addClass('invisible')
+  $('#reflection-text-inner').html((textEditor.value ? textEditor.value : "No reflection yet..."))
+  $('#reflection-title-text').text($('#reflection-title-edit input').val());
+  toggleEditor()
 });

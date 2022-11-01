@@ -82,7 +82,7 @@
               <i class="icon material-icons if-md">home</i>
               <span class="tabbar-label">Home</span>
             </a>
-            <a href="#view-catalog" class="tab-link">
+            <a href="#view-reflectionList" class="tab-link">
               <i class="icon f7-icons if-not-md">square_list_fill</i>
               <i class="icon material-icons if-md">view_list</i>
               <span class="tabbar-label">Catalog</span>
@@ -132,33 +132,48 @@
             <!-- Scrollable page content-->
             <div class="page-content">
               <div class="block-title">Today's Reflection:</div>
-              <div id="reflection-content">
-                <!-- Text Display -->
-                <div id="reflection-text" class="block block-strong">
-                    <div id="reflection-text-inner">No text here yet...</div>
-                    <a href="#" id="reflection-edit" class="col button button-fill">Edit</a>
+
+              <div id="reflection-content" class="card">
+                <div class="card-header">
+                  <div id="reflection-title-text">Title</div>
+                  <div id="reflection-title-edit" class="invisible"><input type="text" value=""></div>
+                  <a href="#" id="reflection-edit" class="col button button-fill">
+                    <i class="icon f7-icons if-not-md">edit</i>
+                    <i class="icon material-icons if-md">edit</i>
+                  </a>
+                  <a href="#" id="reflection-save" class="col button button-fill invisible">
+                    <i class="icon f7-icons if-not-md">save</i>
+                    <i class="icon material-icons if-md">save</i>
+                  </a>
                 </div>
-                <!-- Text Editor -->
-                <div
-                  id="text-editor"
-                  class="text-editor text-editor-resizable text-editor-init invisible"
-                  data-placeholder="Enter text..."
-                  data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'
-                >
-                  <div class="text-editor-content" contenteditable></div>
-                  <a href="#" id="reflection-save" class="col button button-fill">Save</a>
+                <div class="card-content">
+                  <!-- Text Display -->
+                  <div id="reflection-text" class="block block-strong">
+                    <div id="reflection-text-inner">No reflection yet...</div>
+                  </div>
+                  <!-- Text Editor -->
+                  <div
+                    id="text-editor"
+                    class="text-editor text-editor-resizable text-editor-init invisible"
+                    data-placeholder="Enter text..."
+                    data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'
+                  >
+                    <div class="text-editor-content" contenteditable></div>
+                  </div>
                 </div>
+                <div class="card-footer"></div>
               </div>
+
             </div>
           </div>
         </div>
 
         <!-- Catalog View -->
         <div
-          id="view-catalog"
+          id="view-reflectionList"
           class="view view-init tab"
-          data-name="catalog"
-          data-url="/catalog/"
+          data-name="reflectionList"
+          data-url="/reflectionList/"
         >
           <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
         </div>

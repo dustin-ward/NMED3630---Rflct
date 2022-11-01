@@ -17,8 +17,8 @@ var routes = [
     componentUrl: './pages/catalog.html',
   },
   {
-    path: '/product/:id/',
-    componentUrl: './pages/product.html',
+    path: '/reflectionList/',
+    componentUrl: './pages/reflectionList.html'
   },
   {
     path: '/settings/',

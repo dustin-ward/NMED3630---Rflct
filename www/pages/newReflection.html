@@ -1,0 +1,38 @@
+<template>
+    <div class="page" data-name="reflectionList">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="title">Reflections</div>
+            </div>
+        </div>
+        <div class="page-content">
+            ${reflections.value.map((reflection) => $h`
+            <div class="card">
+                <div class="card-header">${reflection.title}</div>
+                <div class="card-content">${reflection.text}</div>
+                <div class="card-footer"></div>
+            </div>
+            `)}
+            <div class="block">
+                <button class="button button-fill" @click=${addReflection}>Add Reflection</Button>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default (props, { $store }) => {
+        const reflections = $store.getters.reflections;
+
+        const addReflection = () => {
+            $store.dispatch('addReflection', {
+                id: '4',
+                title: 'Apple iPhone 12',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+            });
+        }
+
+        return $render;
+    }
+
+</script>
