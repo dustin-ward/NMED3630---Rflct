@@ -3,22 +3,19 @@ const store = createStore({
   state: {
     reflections: [
       {
-        id: '1',
-        title: 'Apple iPhone 8',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.',
+        title: 'Midterm Today',
+        text: 'I had a midterm today. I think it went <b>pretty well :).</b> It was in my CPSC4210 Advanced Software Engineering class. There were a few questions on topics that I had <s>not studied well</s> studied well, but the knowledge is fairly common sense. Not looking forward to the final :)',
+        date: 'Wed Nov 2 2022 16:02:00 GMT-0600 (Mountain Daylight Time)'
+      },
+      {
+        title: 'Thinking about framework7',
+        text: 'After working with framework7 for the first assignment. I have <i>a lot</i> of thoughts about the framework... <br><ol><li>I dont understand the component architecture. Frameworks like Vue make this a lot easier, while it seems like theres 100 different ways to do the same thing in framework7.</li><li>Styling my application is a lot easier. I enjoy working on an app more if I can quickly make it look the way I want. The templated code from the documentation is a huge help</li></ol>',
         date: 'Mon Oct 31 2022 19:56:00 GMT-0600 (Mountain Daylight Time)'
       },
       {
-        id: '2',
-        title: 'Apple iPhone 8 Plus',
-        text: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!',
-        date: 'Mon Oct 31 2022 19:56:00 GMT-0600 (Mountain Daylight Time)'
-      },
-      {
-        id: '3',
-        title: 'Apple iPhone X',
-        text: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.',
-        date: 'Mon Oct 31 2022 19:56:00 GMT-0600 (Mountain Daylight Time)'
+        title: 'The Semester so far...',
+        text: 'This is my second last semester. I am taking 5 classes. <ul><li>CPSC4210</li><li>CPSC4110</li><li>NMED3630</li><li>NEUR3690</li><li>MUSI3605</li></ul>',
+        date: 'Mon Sep 22 2022 12:22:00 GMT-0600 (Mountain Daylight Time)'
       },
     ]
   },
@@ -29,8 +26,12 @@ const store = createStore({
   },
   actions: {
     addReflection({ state }, reflection) {
-      state.reflections = [...state.reflections, reflection];
+      state.reflections = [reflection, ...state.reflections];
     },
+
+    resetReflections({state}) {
+      state.reflections = [];
+    }
   },
 })
 

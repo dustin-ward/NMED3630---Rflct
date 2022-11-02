@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <!--
   Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
       https://cordova.apache.org/docs/en/latest/
   Some notes:
@@ -10,250 +11,160 @@
     * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
       * Enable inline JS: add 'unsafe-inline' to default-src
   -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: content:"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
-    />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: content:" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
 
-    <meta name="theme-color" content="#212121" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <title>Rflct</title>
-    <!-- web-start -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
-    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-    <link rel="icon" href="assets/icons/favicon.png" />
+  <meta name="theme-color" content="#212121" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <title>Rflct</title>
+  <!-- web-start -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="icon" href="assets/icons/favicon.png" />
 
-    <!-- web-end -->
-    <link rel="stylesheet" href="framework7/framework7-bundle.min.css" />
-    <link rel="stylesheet" href="css/icons.css" />
-    <link rel="stylesheet" href="css/app.css" />
-  </head>
-  <body>
-    <div id="app" class="dark">
-      <!-- Left panel with cover effect-->
-      <!-- <div class="panel panel-left panel-cover dark panel-init">
-      <div class="view">
-        <div class="page">
+  <!-- web-end -->
+  <link rel="stylesheet" href="framework7/framework7-bundle.min.css" />
+  <link rel="stylesheet" href="css/icons.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+  <div id="app" class="dark">
+
+    <!-- Views/Tabs container -->
+    <div class="views tabs safe-areas">
+      <!-- Tabbar for switching views-tabs -->
+      <div class="toolbar toolbar-bottom tabbar-labels">
+        <div class="toolbar-inner">
+          <a href="#view-home" class="tab-link tab-link-active">
+            <i class="icon f7-icons if-not-md">house_fill</i>
+            <i class="icon material-icons if-md">home</i>
+            <span class="tabbar-label">Home</span>
+          </a>
+          <a href="#view-reflectionList" class="tab-link">
+            <i class="icon f7-icons if-not-md">square_list_fill</i>
+            <i class="icon material-icons if-md">view_list</i>
+            <span class="tabbar-label">Reflections</span>
+          </a>
+          <a href="#view-settings" class="tab-link">
+            <i class="icon f7-icons if-not-md">gear</i>
+            <i class="icon material-icons if-md">settings</i>
+            <span class="tabbar-label">Settings</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
+      <div id="view-home" class="view view-main view-init tab tab-active">
+        <div class="page" data-name="home">
+          <!-- Top Navbar -->
           <div class="navbar">
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
-              <div class="title">Left Panel</div>
+              <div class="title">
+                <div class="title-text">
+                  <span>
+                    <h1>Rflct</h1>
+                    <h1><span id="reflected">Rflct</span></h1>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Scrollable page content-->
           <div class="page-content">
-            <div class="block">Left panel content goes here</div>
+
+            <div class="main-image">
+              <img src="./assets/images/pexels-pixabay-268533.jpg" class="main-element">
+            </div>
+            <div class="block block-strong inset main-element">
+              <h2>Welcome to Rflct</h2>
+              <p>The app to help you reflect on your day. Check out the "Reflections" tab
+                to see your past reflections, and tap the icon in the top right to create
+                a new one!
+              </p>
+            </div>
+            <div class="block block-strong inset main-element">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut obcaecati
+                adipisci sequi molestias sapiente fugiat quas voluptates est error autem?
+                Corrupti, iure modi? Optio repudiandae ullam accusamus placeat illo aliquid!
+              </p>
+            </div>
+            <a href="#" class="button button-raised button-fill login-screen-open main-element" data-login-screen="#my-login-screen">Login</a>
           </div>
         </div>
       </div>
-    </div> -->
-      <!-- Right panel with reveal effect-->
-      <!-- <div class="panel panel-right panel-reveal dark">
+
+      <!-- Reflection View -->
+      <div id="view-reflectionList" class="view view-init tab" data-name="reflectionList" data-url="/reflectionList/">
+        <!-- Reflection page will be loaded here dynamically from /reflectionList/ route -->
+      </div>
+
+      <!-- Settings View -->
+      <div id="view-settings" class="view view-init tab" data-name="settings" data-url="/settings/">
+        <!-- Settings page will be loaded here dynamically from /settings/ route -->
+      </div>
+    </div>
+
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="my-login-screen">
       <div class="view">
         <div class="page">
-          <div class="navbar">
-            <div class="navbar-bg"></div>
-            <div class="navbar-inner">
-              <div class="title">Right Panel</div>
-            </div>
-          </div>
-          <div class="page-content">
-            <div class="block">Right panel content goes here</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-      <!-- Views/Tabs container -->
-      <div class="views tabs safe-areas">
-        <!-- Tabbar for switching views-tabs -->
-        <div class="toolbar toolbar-bottom tabbar-labels">
-          <div class="toolbar-inner">
-            <a href="#view-home" class="tab-link tab-link-active">
-              <i class="icon f7-icons if-not-md">house_fill</i>
-              <i class="icon material-icons if-md">home</i>
-              <span class="tabbar-label">Home</span>
-            </a>
-            <a href="#view-reflectionList" class="tab-link">
-              <i class="icon f7-icons if-not-md">square_list_fill</i>
-              <i class="icon material-icons if-md">view_list</i>
-              <span class="tabbar-label">Catalog</span>
-            </a>
-            <a href="#view-settings" class="tab-link">
-              <i class="icon f7-icons if-not-md">gear</i>
-              <i class="icon material-icons if-md">settings</i>
-              <span class="tabbar-label">Settings</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-        <div id="view-home" class="view view-main view-init tab tab-active">
-          <div class="page" data-name="home">
-            <!-- Top Navbar -->
-            <div class="navbar">
-              <div class="navbar-bg"></div>
-              <div class="navbar-inner">
-                <div class="title-large">
-                  <div class="title-large-text">Rflct</div>
-                  <div class="title-large-text" id="reflected" style="transform: scale(-1,1) translate(50px,0);">Rflct</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scrollable page content-->
-            <div class="page-content">
-              <div class="block-title">Today's Reflection:</div>
-
-              <!-- <div id="reflection-content" class="card">
-                <div class="card-header">
-                  <div id="reflection-title-text">Title</div>
-                  <div id="reflection-title-edit" class="invisible"><input type="text" value=""></div>
-                  <a href="#" id="reflection-edit" class="col button button-fill">
-                    <i class="icon f7-icons if-not-md">edit</i>
-                    <i class="icon material-icons if-md">edit</i>
-                  </a>
-                  <a href="#" id="reflection-save" class="col button button-fill invisible">
-                    <i class="icon f7-icons if-not-md">save</i>
-                    <i class="icon material-icons if-md">save</i>
-                  </a>
-                </div>
-                <div class="card-content">
-                  <! -- Text Display -- >
-                  <div id="reflection-text" class="block block-strong">
-                    <div id="reflection-text-inner">No reflection yet...</div>
-                  </div>
-                  <! -- Text Editor -- >
-                  <div
-                    id="text-editor"
-                    class="text-editor text-editor-resizable text-editor-init invisible"
-                    data-placeholder="Enter text..."
-                    data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'
-                  >
-                    <div class="text-editor-content" contenteditable></div>
-                  </div>
-                </div>
-                <div class="card-footer"></div>
-              </div> -->
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Catalog View -->
-        <div
-          id="view-reflectionList"
-          class="view view-init tab"
-          data-name="reflectionList"
-          data-url="/reflectionList/"
-        >
-          <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
-        </div>
-
-        <!-- Settings View -->
-        <div
-          id="view-settings"
-          class="view view-init tab"
-          data-name="settings"
-          data-url="/settings/"
-        >
-          <!-- Settings page will be loaded here dynamically from /settings/ route -->
-        </div>
-      </div>
-
-      <!-- Popup -->
-      <div class="popup" id="my-popup">
-        <div class="view">
-          <div class="page">
-            <div class="navbar">
-              <div class="navbar-bg"></div>
-              <div class="navbar-inner">
-                <div class="title">Popup</div>
-                <div class="right">
-                  <a href="#" class="link popup-close">Close</a>
-                </div>
-              </div>
-            </div>
-            <div class="page-content">
-              <div class="block">
-                <p>Popup content goes here.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Login Screen -->
-      <div class="login-screen" id="my-login-screen">
-        <div class="view">
-          <div class="page">
-            <div class="page-content login-screen-content">
-              <div class="login-screen-title">Login</div>
-              <div class="list">
-                <ul>
-                  <li class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-label">Username</div>
-                      <div class="item-input-wrap">
-                        <input
-                          type="text"
-                          name="username"
-                          placeholder="Your username"
-                        />
-                      </div>
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Login</div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Username</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="username" placeholder="Your username" />
                     </div>
-                  </li>
-                  <li class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-label">Password</div>
-                      <div class="item-input-wrap">
-                        <input
-                          type="password"
-                          name="password"
-                          placeholder="Your password"
-                        />
-                      </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Password</div>
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Your password" />
                     </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="list">
-                <ul>
-                  <li>
-                    <a href="#" class="item-link list-button login-button"
-                      >Sign In</a
-                    >
-                  </li>
-                </ul>
-                <div class="block-footer">
-                  Some text about login information.<br />Click "Sign In" to
-                  close Login Screen
-                </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="#" class="item-link list-button login-button">Sign In</a>
+                </li>
+              </ul>
+              <div class="block-footer">
+                These fields arent saved anywhere.<br />Don't use your actual info :)
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
-    <!-- Framework7 library -->
-    <script src="framework7/framework7-bundle.min.js"></script>
-    <!-- Cordova APIs -->
-    <script src="js/cordova-app.js"></script>
+  </div>
+  <!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
+  <!-- Framework7 library -->
+  <script src="framework7/framework7-bundle.min.js"></script>
+  <!-- Cordova APIs -->
+  <script src="js/cordova-app.js"></script>
 
-    <!-- App routes -->
-    <script src="js/routes.js"></script>
-    <!-- App store -->
-    <script src="js/store.js"></script>
-    <!-- App scripts -->
-    <script src="js/app.js"></script>
-  </body>
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+  <!-- App store -->
+  <script src="js/store.js"></script>
+  <!-- App scripts -->
+  <script src="js/app.js"></script>
+</body>
+
 </html>

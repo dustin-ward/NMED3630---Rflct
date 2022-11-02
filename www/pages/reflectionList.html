@@ -14,8 +14,8 @@
         </div>
         <div class="page-content">
             ${reflections.value.map((reflection) => $h`
-            <div class="card">
-                <div class="card-header">${reflection.title}</div>
+            <div class="card reflection">
+                <div class="card-header"><h2>${reflection.title}</h2></div>
                 <div class="card-content"><div innerHTML=${reflection.text}></div></div>
                 <div class="card-footer">${renderDate(reflection.date)}</div>
             </div>

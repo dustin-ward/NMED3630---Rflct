@@ -11,10 +11,7 @@
                 </div>
                 <div class="title">New Reflection</div>
                 <div class="right">
-                    <button @click=${save} class="col button button-fill">
-                        <i class="icon f7-icons if-not-md">save</i>
-                        <i class="icon material-icons if-md">save</i>
-                    </button>
+
                 </div>
             </div>
         </div>
@@ -22,24 +19,28 @@
             <div id="reflection-content" class="card">
                 <div class="card-header">
                     <input id="title-textbox" type="text" placeholder="Enter title..."></input>
-                    
+
                 </div>
                 <div class="card-content">
-                    <div id="text-editor" class="text-editor text-editor-resizable text-editor-init"
+                    <div id="text-editor" class="text-editor text-editor-init"
                         data-placeholder="Enter text..."
                         data-buttons='[["bold", "italic", "underline", "strikeThrough"], ["orderedList", "unorderedList"]]'>
                         <div class="text-editor-content" contenteditable></div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="item-content item-input">
-                        <div class="item-inner">
-                          <div class="item-input-wrap">
-                            <input type="text" placeholder="Select date and time" readonly="readonly"
-                              id="demo-calendar-date-time" />
-                          </div>
-                        </div>
-                    </div>
+                    <!-- <div class="item-content item-input"> -->
+                        <!-- <div class="item-inner"> -->
+                            <!-- <div class="item-input-wrap"> -->
+                                <input type="text" placeholder="Select date and time" readonly="readonly"
+                                    id="demo-calendar-date-time" />
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                    <button @click=${save} class="col button button-fill save">
+                        <i class="icon f7-icons if-not-md">save</i>
+                        <i class="icon material-icons if-md">save</i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -47,8 +48,9 @@
 </template>
 
 <script>
-    export default (props, { $store, $on}) => {
+    export default (props, { $store, $on }) => {
         let calendarDateTime;
+        let toastBottom;
 
         $on('pageInit', () => {
             // Date + Time
@@ -67,8 +69,9 @@
                 text: te.value,
                 date: calendarDateTime.value,
             }
-            if(!ref.title || !ref.text) {
+            if (!ref.title || !ref.text) {
                 console.log("invalid reflection")
+                showToastBottom();
                 return
             }
             console.log(ref)
@@ -76,8 +79,29 @@
             app.views.reflectionList.router.navigate('/reflectionList/')
         }
 
+        const showToastBottom = () => {
+            // Create toast
+            if (!toastBottom) {
+                toastBottom = app.toast.create({
+                    text: 'Invalid reflection... please try again',
+                    closeTimeout: 2000,
+                });
+            }
+            // Open it
+            toastBottom.open();
+        }
+
+        $on('pageBeforeOut', () => {
+            app.toast.close();
+        })
+
+        $on('pageBeforeRemove', () => {
+            // Destroy toasts when page removed
+            if (toastBottom) toastBottom.destroy();
+        })
+
         return $render;
     }
 
-    
+
 </script>
